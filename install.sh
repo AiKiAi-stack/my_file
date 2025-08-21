@@ -73,7 +73,6 @@ else
   RELEASE_URL="https://github.com/mamba-org/micromamba-releases/releases/download/${VERSION}/micromamba-${PLATFORM}-${ARCH}"
 fi
 
-
 # Downloading artifact
 mkdir -p "${BIN_FOLDER}"
 if hash curl >/dev/null 2>&1; then
@@ -85,7 +84,6 @@ else
   exit 1
 fi
 chmod +x "${BIN_FOLDER}/micromamba"
-
 
 # Initializing shell
 case "$INIT_YES" in
@@ -111,7 +109,6 @@ case "$INIT_YES" in
     ;;
 esac
 
-
 # Initializing conda-forge
 case "$CONDA_FORGE_YES" in
   y|Y|yes)
@@ -119,6 +116,4 @@ case "$CONDA_FORGE_YES" in
     "${BIN_FOLDER}/micromamba" config append channels nodefaults
     "${BIN_FOLDER}/micromamba" config set channel_priority strict
     ;;
-
 esac
-

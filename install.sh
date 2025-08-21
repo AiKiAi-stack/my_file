@@ -1,20 +1,18 @@
 #!/bin/sh
-
 set -eu
-
 # Detect the shell from which the script was called
-# parent=$(ps -o comm $PPID |tail -1)
-# parent=${parent#-}  # remove the leading dash that login shells have
-# case "$parent" in
-#   # shells supported by `micromamba shell init`
-#   bash|fish|xonsh|zsh)
-#     shell=$parent
-#     ;;
-#   *)
-#     # use the login shell (basename of $SHELL) as a fallback
-#     shell=${SHELL##*/}
-#     ;;
-# esac
+parent=$(ps -o comm $PPID |tail -1)
+parent=${parent#-}  # remove the leading dash that login shells have
+case "$parent" in
+  # shells supported by `micromamba shell init`
+  bash|fish|xonsh|zsh)
+    shell=$parent
+    ;;
+  *)
+    # use the login shell (basename of $SHELL) as a fallback
+    shell=${SHELL##*/}
+    ;;
+esac
 
 # Parsing arguments
 if [ -t 0 ] ; then
@@ -123,3 +121,4 @@ case "$CONDA_FORGE_YES" in
     ;;
 
 esac
+
